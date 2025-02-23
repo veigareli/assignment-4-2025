@@ -4,7 +4,7 @@
 
 ---
 
-Time for some more testing. We are going to focus on testing the UI this week. We will be using [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/) to create ui-integration tests and [Playwright](https://www.https://playwright.dev/) to create E2E tests.
+Time for some more testing. We are going to focus on testing the UI this week. We will be using [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/) to create ui-integration tests and [Playwright](ttps://playwright.dev/) to create E2E tests.
 
 **Group size**: 1 person
 
