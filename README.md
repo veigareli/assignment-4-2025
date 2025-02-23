@@ -11,7 +11,7 @@ Time for some more testing. We are going to focus on testing the UI this week. W
 ---
 
 ## The Assignment
-Use [this template repository](https://github.com/arnif/assignment-4-2025) as a starting point for this assignment.
+Use this template repository as a starting point for this assignment.
 
 Run the following commands to get started:
 
