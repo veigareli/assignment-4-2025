@@ -1,16 +1,5 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import { useState, useEffect } from "react";
-import { Todo } from "../types/todo";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import type { Todo } from "../types/todo";
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -50,12 +39,8 @@ export default function Home() {
   };
 
   return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <h1 className="text-4xl font-bold row-start-1">
-        ✨ TODO 📃 App ✨
-      </h1>
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <h1 className="text-4xl font-bold row-start-1">✨ TODO 📃 App ✨</h1>
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <form onSubmit={addTodo} className="flex gap-2 mb-8">
           <input
@@ -65,12 +50,12 @@ export default function Home() {
             placeholder="Add a new todo..."
             className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800"
           />
-            <button
+          <button
             type="submit"
             className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
-            >
+          >
             Add ✨
-            </button>
+          </button>
         </form>
 
         <ul className="space-y-3">
