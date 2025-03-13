@@ -55,6 +55,7 @@ jobs:
         run: npm run start &
         env:
           NODE_ENV: test
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Wait Until Next.js is Ready
         run: |
@@ -63,6 +64,9 @@ jobs:
             echo "Waiting for Next.js to start..."
             sleep 2
           done
+        
+      - name: Verify API is Reachable
+        run: curl -v http://localhost:3000/api/todos
 
       - name: Execute Playwright Tests
         run: E2E_TEST=true npm run test:e2e  
