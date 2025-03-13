@@ -1,12 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient, Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     const todos = await prisma.todo.findMany();
-    const mappedTodos = todos.map((todo) => ({
+    const mappedTodos = todos.map((todo: { title: string; }) => ({
       ...todo,
       text: todo.title as string,
     }));
@@ -59,9 +59,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       await prisma.todo.delete({ where: { id } });
       return res.status(200).json({ message: "Todo deleted successfully" });
     } catch (error: unknown) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
-        return res.status(200).json({ message: "Todo already deleted" });
-      }
       console.error("Error deleting todo:", error);
       return res.status(500).json({ error: "Failed to delete todo" });
     }

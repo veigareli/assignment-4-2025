@@ -7,13 +7,13 @@ import { http, HttpResponse } from "msw";
 
 describe("Todo Application", () => {
   afterEach(() => {
-    cleanup(); // 🧹 Cleans up the DOM after each test
+    cleanup();
   });
 
   it("should display todos when the page loads", async () => {
     render(<Home />);
 
-    const firstTodo = await screen.findByText("Learn Testing"); // ✅ Predefined in __tests__/mocks/handlers.ts
+    const firstTodo = await screen.findByText("Learn Testing");
     const secondTodo = await screen.findByText("Write Tests");
 
     expect(firstTodo).toBeDefined();
