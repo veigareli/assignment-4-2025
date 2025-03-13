@@ -22,13 +22,11 @@ test.beforeEach(async ({ page }) => {
         fetch(`/api/todos?id=${todo.id}`, { method: "DELETE" })
       )
     );
-    // Wait longer (e.g. 500ms) to ensure all deletions are processed
     await new Promise((res) => setTimeout(res, 500));
   });
 });
 
 test.afterEach(async ({ page }) => {
-  // Optionally clear the todos again after each test
   await page.evaluate(async () => {
     const response = await fetch(`/api/todos`);
     const todos = await response.json();
