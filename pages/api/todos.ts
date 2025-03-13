@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { Todo } from "../../types/todo";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
