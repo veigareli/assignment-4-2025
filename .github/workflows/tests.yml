@@ -56,14 +56,15 @@ jobs:
         env:
           NODE_ENV: test
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
+      
       - name: Wait Until Next.js is Ready
         run: |
           for i in {1..30}; do
-            curl -sSf http://localhost:3000 && break
+            curl -sSf http://localhost:3000 > /dev/null && echo "Next.js is running!" && break
             echo "Waiting for Next.js to start..."
             sleep 2
           done
+      
         
       - name: Verify API is Reachable
         run: curl -v http://localhost:3000/api/todos
