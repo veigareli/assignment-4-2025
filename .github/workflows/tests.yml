@@ -65,4 +65,4 @@ jobs:
           done
 
       - name: Execute Playwright Tests
-        run: npm run test:e2e
+        run: E2E_TEST=true npm run test:e2e  
