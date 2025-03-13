@@ -1,4 +1,4 @@
-name: Continuous Integrationss
+name: Continuous Integration
 
 on:
   push:
@@ -48,26 +48,37 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      - name: Set Up Database
+        run: |
+          echo "Setting up database..."
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
+          cat .env
+          npx prisma migrate deploy
+
       - name: Compile Next.js App
         run: npm run build
 
-      - name: Launch Next.js Server
+      - name: Start Next.js Server
         run: npm run start &
         env:
           NODE_ENV: test
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      
-      - name: Wait Until Next.js is Ready
+
+      - name: Wait for Next.js Server to Start
         run: |
+          echo "Waiting for Next.js to start..."
           for i in {1..30}; do
-            curl -sSf http://localhost:3000 > /dev/null && echo "Next.js is running!" && break
-            echo "Waiting for Next.js to start..."
+            curl -sSf http://localhost:3000/api/todos && break
+            echo "Still waiting..."
             sleep 2
           done
-      
-        
-      - name: Verify API is Reachable
-        run: curl -v http://localhost:3000/api/todos
+        timeout-minutes: 2
 
-      - name: Execute Playwright Tests
-        run: E2E_TEST=true npm run test:e2e  
+      - name: Run Playwright Tests
+        run: E2E_TEST=true npm run test:e2e
+
+      - name: Upload Playwright Test Results
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-results
+          path: test-results/
