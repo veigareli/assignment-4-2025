@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const todos = await prisma.todo.findMany();
     const mappedTodos = todos.map((todo) => ({
       ...todo,
-      text: todo.title as string, // Ensuring `title` is always treated as a string
+      text: todo.title as string,
     }));
     return res.status(200).json(mappedTodos);
   }
