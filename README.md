@@ -59,3 +59,8 @@ Good luck and Have fun :)
 
 E2E_TEST=true npm run test:e2e
 npm run test
+
+## Deployment 
+assignment-4-2025-53j8k9ak6-veigarelis-projects.vercel.app
+
+## Preview Build
