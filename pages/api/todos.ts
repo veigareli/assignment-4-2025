@@ -2,9 +2,9 @@ import '../../config/tracing';
 
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
+import { dogstatsd } from '../../config/tracing';
 
 const prisma = new PrismaClient();
-const { dogstatsd } = require('../../config/tracing');
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
