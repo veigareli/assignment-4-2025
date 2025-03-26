@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
+require('./config/tracing');
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactStrictMode: true,
 };
 
